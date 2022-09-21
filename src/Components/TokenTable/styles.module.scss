@@ -1,0 +1,120 @@
+.table{
+    border-collapse: separate; 
+    border-spacing: 0 1rem;
+  
+    table-layout: fixed;
+    width: 100%;
+    // border: 1px solid red;
+    padding: 0 1rem;
+
+
+    &>tr{
+        border: none;
+        border: 0;
+    }
+    thead{
+        th{
+            position: relative;
+        }
+        th:nth-child(1){
+            padding-left: 1rem;
+            width: 16%;
+        }
+        th:nth-child(2){
+
+            width: 15%;
+        }
+        th:nth-child(3){
+            
+            width: 13%;
+        }
+        th:nth-child(4){
+            width: 12%;
+        }
+        th:nth-child(5){
+            width: 10%;
+        }
+        th:nth-child(6){
+            width: 10%;
+        }
+        th:nth-child(7){
+            width: 16%;
+        }
+     
+    }
+    tr{
+        padding: 1rem 0;
+        text-align: left;
+
+       & th:first-child{
+        padding-left: 1rem;
+       }
+
+       &:not(:last-child){
+         margin-bottom: 1rem;
+       }
+      
+    }
+
+    th{
+        padding: 1.5rem 0;
+        max-width: 130px;
+    }
+
+   
+}
+
+.buyButton{
+    padding: .5rem .75rem;
+    background: transparent;
+    border: 1px solid rgb(190,42,183);
+    color: rgb(190,42,183);
+    border-radius: 6px;
+
+    &:hover{
+        background: rgb(190,42,183);
+        color: white;
+    }
+}
+
+
+.projectCircle{
+    display: flex;
+    align-items: center;
+}
+
+.circleIcon{
+   margin-right: .5rem;
+}
+
+.chevron{
+    margin-right: .5rem;
+}
+
+.sorter{
+    margin-left: .5rem;
+}
+
+.cellSelect{
+    width: 250px;
+    position: absolute;
+    bottom: -30px
+
+}
+
+.selectOption{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg{
+        margin-right: .5rem;
+     
+    }
+}
+
+.clearFilters{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
