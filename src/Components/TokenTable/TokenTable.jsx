@@ -1,5 +1,4 @@
 import React from 'react'
-import { createContext } from 'react';
 import { SortContext } from './context/SortContext';
 import styles from './styles.module.scss'
 import TableHead from './TableHead';
@@ -14,7 +13,6 @@ export default function TokenTable(props) {
     onSort, 
     onFilter,
     onBuy = (item) => alert(item)
-    
     } = props;
 
     const click = (item) => {
@@ -22,17 +20,20 @@ export default function TokenTable(props) {
         e.stopPropagation();
         onBuy(item)
       }
-      
     }
 
-   
   return (
     <SortContext.Provider value={{onSort}}>
       <div div className='container'>
         <table rules='none'  className={styles.table}>
           <TableHead headerCell={headerCell}  onSort={onSort} filters={filters}/>
-          {onFilter(items).map(item =>   <TableLine onBuy={click} key={item.id} item={item} /> )}
-
+          {onFilter(items)
+          .map(item => <TableLine 
+                          onBuy={click} 
+                          key={item.id} 
+                          item={item} 
+                        /> 
+          )}
         </table>
       </div>
     </SortContext.Provider>

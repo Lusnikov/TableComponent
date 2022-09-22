@@ -10,10 +10,8 @@ export const compare = ( a, b, key) =>{
 }
 
 export const sortItems = (items, key) =>{
-    if (!key) {
-  
-      return items
-    }
+
+    if (!key) return items
     const items2 = JSON.parse(JSON.stringify(items));
     if (key.includes('-')) {return items2.sort((a,b) => compare(a,b, key.replace('-', ''))).reverse()}
     return items2.sort((a,b) => compare(a,b, key))

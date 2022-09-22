@@ -1,8 +1,8 @@
 import React from 'react'
-import {  useNavigate } from 'react-router-dom'
+import styles from './styles.module.scss'
+import { useNavigate } from 'react-router-dom'
 import { colors } from '../../Helpers/Colors'
 import Circle from '../UI/Circle'
-import styles from './styles.module.scss'
 
 export default function TableLine({item, onBuy}) {
   const navigate = useNavigate()
@@ -14,11 +14,10 @@ export default function TableLine({item, onBuy}) {
             <span>
              {item.name}
             </span>  
-           
         </div>
       </th>
       <th className={styles.bodyCells}>{item.type}</th>
-      <th className={styles.bodyCells}>{item.conditions} - сформировать</th>
+      <th className={styles.bodyCells}>{item.conditions.replace('x', 'x ')}</th>
       <th className={styles.bodyCells}>{item.volume}</th>
       <th className={styles.bodyCells}>{item.roi} %</th>
       <th className={styles.bodyCells}>{item.free}</th>

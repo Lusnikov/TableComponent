@@ -1,13 +1,9 @@
 .table{
     border-collapse: separate; 
     border-spacing: 0 1rem;
-  
     table-layout: fixed;
     width: 100%;
-    // border: 1px solid red;
     padding: 0 1rem;
-
-
     &>tr{
         border: none;
         border: 0;
@@ -60,8 +56,6 @@
         padding: 1.5rem 0;
         max-width: 130px;
     }
-
-   
 }
 
 .buyButton{
@@ -76,7 +70,6 @@
         color: white;
     }
 }
-
 
 .projectCircle{
     display: flex;

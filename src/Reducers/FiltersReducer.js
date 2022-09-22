@@ -50,6 +50,7 @@ export const clearType = () => ({type: CLEAR_TYPE})
 export const clearStatus = () => ({type: CLEAR_STATUS})
 
 export const updateStatus = (status) =>{
+    if (status === undefined) status = null
     return {
         type: UPDATE_STATUS,
         payload: status

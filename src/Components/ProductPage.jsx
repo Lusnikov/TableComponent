@@ -6,6 +6,8 @@ export default function ProductPage() {
  const idProduct = useParams();
  const [product] = useSelector(state => state.projects).filter(e => e.id === +idProduct.id)
   return (
-    <div>Информация о продукте "{product.name}"</div>
+    <div className='container'>
+      Информация о продукте "{product.name}"
+    </div>
   )
 }

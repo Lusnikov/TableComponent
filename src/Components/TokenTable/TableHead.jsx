@@ -1,32 +1,24 @@
 import React from 'react'
-import styles from './styles.module.scss'
-import HeaderCellItem from './HeaderCellItem';
-import { useState } from 'react';
-import Select from 'react-select';
 import { colors, colorsList } from '../../Helpers/Colors';
-import Circle from '../UI/Circle'
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearFilters, clearStatus, clearType, updateStatus, updateType } from '../../Reducers/FiltersReducer';
 import { tokenTypes } from '../../Helpers/TokensTypes';
-
+import styles from './styles.module.scss'
+import HeaderCellItem from './HeaderCellItem';
+import Circle from '../UI/Circle'
+import Select from 'react-select';
 
 export default function TableHead({headerCell,onSort,filters}) {
   const [activeSelectId, setActiveSelectId] = useState(null)
   const dispatch = useDispatch()
 
   const selectHandler = (value) => () => setActiveSelectId((prev) => {
-
-    if (!prev)  {
-      return value
-     
-    }
-    if (prev === value){
-     return null
-    }
-   
-   return value
-    
+    if (!prev)  return value
+    if (prev === value) return null
+    return value
   })
+
   return (
     <thead align="justify">
     <tr>
@@ -35,7 +27,8 @@ export default function TableHead({headerCell,onSort,filters}) {
         sortExists 
         tagExists={filters.status === null ? 'All' :  colors[filters.status].status}
         headerCell={headerCell} 
-        value='name' onSort={onSort} 
+        value='name' 
+        onSort={onSort} 
         selectRender={() =>  {
           if (activeSelectId === 1 ){
             return( 

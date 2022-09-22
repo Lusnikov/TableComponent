@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
-import { createContext } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import TokenTable from './Components/TokenTable/TokenTable'
 import './Global.scss'
-import { compare, sortItems } from './Helpers/sort'
+import { sortItems } from './Helpers/sort'
 import {Routes, Route} from 'react-router-dom'
 import ProductPage from './Components/ProductPage'
 
-
-
-
 const filtration = (object, items) =>{
-    let result = [...items];
-  
     const test = (Object.keys(object))
+    let result = [...items];
     const filtered = result.filter(e => {
-        // debugger
         let status = true;
         for (let i=0; i<test.length; i++){
             const debug2 = object[test[i]];
@@ -32,13 +26,10 @@ const filtration = (object, items) =>{
     return filtered
 }
 
-
 export default function App() {
   const items = useSelector(state => state.projects)
   const filters = useSelector(state => state.filters)
-
   const [sortField, setSortField] = useState(null)
-
 
   const onSort = ({field}) =>{
     return () =>{
@@ -55,8 +46,6 @@ export default function App() {
             return 
         }
         setSortField(`-${field}`)
-       
-
     }
    
   }
@@ -65,24 +54,21 @@ export default function App() {
     return filtration(filters, items)
   }
 
-//   здесь отрабатывает функция фильтровки
- 
   return (
     <>
-    <Routes>
-        <Route path='/' 
-          element={ <TokenTable  
-            items={filterItems(sortItems(items,sortField))}
-            onSort={onSort}
-            filters={filters}
-            onFilter={filterItems}
-            headerCell={sortField}
-            onBuy={(elem) => alert(`Id покупаемого проекта - ${elem.id}`)}
-        />}>
-       </Route>
-      <Route path='/product/:id' element={<ProductPage/>}></Route>
-    </Routes>
-    
+      <Routes>
+          <Route path='/' 
+            element={ <TokenTable  
+              items={filterItems(sortItems(items,sortField))}
+              onSort={onSort}
+              filters={filters}
+              onFilter={filterItems}
+              headerCell={sortField}
+              onBuy={(elem) => alert(`Id покупаемого проекта - ${elem.id}`)}
+          />}>
+          </Route>
+          <Route path='/product/:id' element={<ProductPage/>}></Route>
+      </Routes>
     </>
   )
 }
