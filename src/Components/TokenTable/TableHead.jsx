@@ -2,16 +2,17 @@ import React from 'react'
 import { colors, colorsList } from '../../Helpers/Colors';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearFilters, clearStatus, clearType, updateStatus, updateType } from '../../Reducers/FiltersReducer';
+import { clearFilters,  } from '../../Reducers/FiltersReducer';
 import { tokenTypes } from '../../Helpers/TokensTypes';
 import styles from './styles.module.scss'
 import HeaderCellItem from './HeaderCellItem';
 import Circle from '../UI/Circle'
 import Select from 'react-select';
 
-export default function TableHead({headerCell,onSort,filters}) {
+export default function TableHead({headerCell,onSort,filters, onFilter}) {
   const [activeSelectId, setActiveSelectId] = useState(null)
   const dispatch = useDispatch()
+  
 
   const selectHandler = (value) => () => setActiveSelectId((prev) => {
     if (!prev)  return value
@@ -46,13 +47,8 @@ export default function TableHead({headerCell,onSort,filters}) {
                     isClearable
                     defaultInputValue={colors[filters.status]?.status}
                     onChange={(e,triggeredAction) =>{
-                      if (triggeredAction.action === 'clear'){
-                        dispatch(clearStatus())
-                        selectHandler(null)()
-                        return
-                      }
-                      console.log(filters);
-                      dispatch(updateStatus(e.name))
+                      onFilter({status: e.name})
+                      selectHandler(null)()
                     }}
                     
                  />
@@ -78,13 +74,9 @@ export default function TableHead({headerCell,onSort,filters}) {
                       formatOptionLabel={(type) => type.name}
                       getOptionValue={type => type.name }
                       isClearable
-                      onChange={(e,triggeredAction) =>{
-                        if (triggeredAction.action === 'clear'){
-                          dispatch(clearType())
-                          selectHandler(null)()
-                          return
-                        }
-                        dispatch(updateType(e.name))
+                      onChange={(e) =>{
+                        onFilter({type: e.name})
+                        selectHandler(null)()
                       }}
                   />
                   </div>

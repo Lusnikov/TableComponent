@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { SortContext } from './context/SortContext';
 import styles from './styles.module.scss'
 import TableHead from './TableHead';
@@ -11,7 +12,7 @@ export default function TokenTable(props) {
     headerCell,
     filters, 
     onSort, 
-    onFilter,
+    onFilter=(props) => console.log(props),
     onBuy = (item) => alert(item)
     } = props;
 
@@ -21,14 +22,20 @@ export default function TokenTable(props) {
         onBuy(item)
       }
     }
+    const lines = items;
 
   return (
     <SortContext.Provider value={{onSort}}>
       <div div className='container'>
         <table rules='none'  className={styles.table}>
-          <TableHead headerCell={headerCell}  onSort={onSort} filters={filters}/>
-          {onFilter(items)
-          .map(item => <TableLine 
+          <TableHead headerCell={headerCell} onSort={onSort} filters={filters} onFilter={onFilter}/>
+          
+          {
+            !lines.length && <div>Элементы с заданными параметрами отсутствуют</div>
+          }
+          
+          {
+          lines.map(item => <TableLine 
                           onBuy={click} 
                           key={item.id} 
                           item={item} 

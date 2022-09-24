@@ -1,35 +1,14 @@
 import React, { useState } from 'react'
-import {useSelector} from 'react-redux'
 import TokenTable from './Components/TokenTable/TokenTable'
 import './Global.scss'
 import { sortItems } from './Helpers/sort'
-import {Routes, Route} from 'react-router-dom'
 import ProductPage from './Components/ProductPage'
+import { filtration } from './Helpers/Filtration'
 
-const filtration = (object, items) =>{
-    const test = (Object.keys(object))
-    let result = [...items];
-    const filtered = result.filter(e => {
-        let status = true;
-        for (let i=0; i<test.length; i++){
-            const debug2 = object[test[i]];
-            if (debug2 === null) continue;
-        
-            const debug = (e[test[i]] === object[test[i]])
-            if (debug === false) {
-                status = false
-                break
-            } 
-        }
-        return status
-    })
-    return filtered
-}
 
-export default function App() {
-  const items = useSelector(state => state.projects)
-  const filters = useSelector(state => state.filters)
+export default function App({items=[], filters, onFilter,onBuy}) {
   const [sortField, setSortField] = useState(null)
+  
 
   const onSort = ({field}) =>{
     return () =>{
@@ -56,19 +35,14 @@ export default function App() {
 
   return (
     <>
-      <Routes>
-          <Route path='/' 
-            element={ <TokenTable  
+      <TokenTable  
               items={filterItems(sortItems(items,sortField))}
               onSort={onSort}
               filters={filters}
-              onFilter={filterItems}
+              onFilter={onFilter}
               headerCell={sortField}
-              onBuy={(elem) => alert(`Id покупаемого проекта - ${elem.id}`)}
-          />}>
-          </Route>
-          <Route path='/product/:id' element={<ProductPage/>}></Route>
-      </Routes>
+              onBuy={onBuy}
+      />
     </>
   )
 }

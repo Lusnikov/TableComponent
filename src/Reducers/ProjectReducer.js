@@ -9,6 +9,8 @@ const initialState = [
 
 const ProjectsReducer = (state=initialState, action) =>{
     switch (action.type){
+        case "INITIALIZE_ITEMS":
+            return action.payload;
         default:
             return state;
     }

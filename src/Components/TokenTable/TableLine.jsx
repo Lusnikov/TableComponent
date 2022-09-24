@@ -1,13 +1,11 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import { useNavigate } from 'react-router-dom'
 import { colors } from '../../Helpers/Colors'
 import Circle from '../UI/Circle'
 
 export default function TableLine({item, onBuy}) {
-  const navigate = useNavigate()
   return (
-    <tr style={{background: colors[item.status].background, cursor: 'pointer'}} onClick={() => navigate(`/product/${item.id}`)}>
+    <tr style={{background: colors[item.status].background, cursor: 'pointer'}}>
       <th className={styles.bodyCells}>
         <div className={styles.projectCircle}>
             <Circle color={colors[item.status].circleColor} width='13' className={styles.circleIcon}/>
